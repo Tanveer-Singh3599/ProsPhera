@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> transction </title>
+    <link rel="stylesheet" href="./css/maininterfacecss.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2 > <a href="./maininterf.html" style="color: white; text-decoration: none; cursor: pointer;">AI Finance Pro</h2></a> 
+        <ul class="nav-menu">
+            <li class="nav-item" class=".trasnnva" ><a  href="./transaction.html" style="color: white;text-decoration: none;">Transaction</li></a>
+            <li class="nav-item">Bills</li>
+            <li class="nav-item" class=".trasnnva" ><a  href="./profile.html" style="color: white;text-decoration: none;">Profile</li></a>
+            <!-- <li class="nav-item">Statistics</li>
+            <li class="nav-item">Goals</li>
+            <li class="nav-item">Settings</li> -->
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <div>
+                <h1>Hello, Pulkit</h1>
+                <p class="text-muted">May 19, 2023</p>
+            </div>
+            <button class="btn btn-primary">New Transaction</button>
+        </div>
+
+
+        <!-- Transactions Card -->
+        <div class="card3 transaction-card">
+            <div class="flex-between">
+                <h4>Recent Transactions</h4>
+                <a href="#" class="text-primary">View All</a>
+            </div>
+            <div class="transaction-list" id="transactionList">
+                <div class="transaction-item">
+                    <div class="flex-between">
+                        <div>
+                            <h4>GTR S - Goldget & Gear</h4>
+                            <small class="text-muted">17 May 2023</small>
+                        </div>
+                        <span style="color: #dc3545;">-$20.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let totalBalance = 240399;
+        let expenses = {
+            Shopping: 250,
+            Eating: 350,
+            Restaurant: 50,
+            Transportation: 0
+        };
+
+        let expensesChart = null;
+
+        function updateCharts() {
+            expensesChart.data.datasets[0].data = Object.values(expenses);
+            expensesChart.update();
+        }
+
+        function updateBalance() {
+            document.getElementById('totalBalance').textContent =
+                `$${totalBalance.toLocaleString()}`;
+        }
+
+        function addTransaction(amount, isIncome, category) {
+            const transactionList = document.getElementById('transactionList');
+            const transactionItem = document.createElement('div');
+            transactionItem.className = 'transaction-item';
+            transactionItem.innerHTML = `
+                <div class="flex-between">
+                    <div>
+                        <h4>${isIncome ? 'Income' : `${category} Expense`}</h4>
+                        <small class="text-muted">${new Date().toLocaleDateString()}</small>
+                    </div>
+                    <span style="color: ${isIncome ? '#28a745' : '#dc3545'}">
+                        ${isIncome ? '+' : '-'}$${Math.abs(amount).toFixed(2)}
+                    </span>
+                </div>
+            `;
+            transactionList.prepend(transactionItem);
+        }
+
+        // Initialize Charts
+        const spendingCtx = document.getElementById('spendingChart').getContext('2d');
+        new Chart(spendingCtx, {
+            type: 'line',
+            data: {
+                labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                datasets: [{
+                    label: 'Spending',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    borderColor: '#2a2a72',
+                    tension: 0.4
+                }]
+            }
+        });
+
+        const expensesCtx = document.getElementById('expensesChart').getContext('2d');
+        expensesChart = new Chart(expensesCtx, {
+            type: 'pie',
+            data: {
+                labels: Object.keys(expenses),
+                datasets: [{
+                    data: Object.values(expenses),
+                    backgroundColor: [
+                        '#2a2a72',
+                        '#009ffd',
+                        '#00c49a',
+                        '#ff6b6b'
+                    ]
+                }]
+            }
+        });
+
+        // Event Listeners
+        document.querySelector('.btn-income').addEventListener('click', () => {
+            const amount = parseFloat(document.getElementById('amountInput').value);
+            if (amount) {
+                totalBalance += amount;
+                updateBalance();
+                addTransaction(amount, true);
+                document.getElementById('amountInput').value = '';
+            }
+        });
+
+        document.querySelector('.btn-expense').addEventListener('click', () => {
+            const amount = parseFloat(document.getElementById('amountInput').value);
+            const category = document.getElementById('categorySelect').value;
+            if (amount) {
+                totalBalance -= amount;
+                expenses[category] += amount;
+                updateBalance();
+                updateCharts();
+                addTransaction(amount, false, category);
+                document.getElementById('amountInput').value = '';
+            }
+        });
+    </script>
+</body>
+
+</html>
