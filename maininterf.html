@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Finance Pro</title>
-    <link rel="stylesheet" href=".\css\maininterfacecss.css">
+    <link rel="stylesheet" href="./css/maininterfacecss.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <h2 > <a href="http://127.0.0.1:3000/.vscode/prosfera/maininterf.html#" style="color: white; text-decoration: none; cursor: po;">Finance Pro</h2></a> 
+        <h2 > <a href="./maininterf.html" style="color: white; text-decoration: none; cursor: po;">Finance Pro</h2></a> 
         <ul class="nav-menu">
-            <li class="nav-item" class=".trasnnva" ><a  href="http://127.0.0.1:3000/.vscode/prosfera/transcation.html#" style="color: white;text-decoration: none;">Transactions</li></a>
+            <li class="nav-item" class=".trasnnva" ><a  href="./transcation.html" style="color: white;text-decoration: none;">Transactions</li></a>
             <li class="nav-item">Bills</li>
             <!-- <li class="nav-item">Statistics</li>
             <li class="nav-item">Goals</li>
@@ -324,7 +324,7 @@ function generateDynamicRecommendation() {
         additionalTips: []
     };
     
-    // Main advice logic
+    // Main advice logic///
     if (savingsRate < 15) {
         recommendations.mainAdvice = `Your savings rate is ${savingsRate}%, below the recommended 20%. Focus on reducing ${largestExpense.cat} expenses ($${largestExpense.amt}/month).`;
     } else {
