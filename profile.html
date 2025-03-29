@@ -1,22 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="./css/maininterfacecss.css">
+    <style>
+        .main-content {
+            background-color: white;
+            overflow-x: hidden;
+        }
+        .card-1 {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            width: 45vw;
+            height: 50vh;
+            margin-top: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            top: 6vh;
+            height: 265px;
+        }
+
+        .profile-img img {
+            position: relative;
+            top: -3vh;
+            height: 260px;
+        }
+
+        .profile-content {
+            position: relative;
+            left: 25vw;
+            bottom: 25vh;
+        }
+        .main-c {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         position:relative;
+         left: 35vw;
+         bottom: 15vh;
+        }
+    </style>
 </head>
+
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <h2 > <a href="./maininterf.html" style="color: white; text-decoration: none; cursor: pointer;"> AI Finance Pro</h2></a> 
+        <h2> <a href="./maininterf.html" style="color: white; text-decoration: none; cursor: pointer;"> AI Finance Pro
+        </h2></a>
         <ul class="nav-menu">
-            <li class="nav-item" class=".trasnnva" ><a  href="./transaction.html" style="color: white;text-decoration: none;">Transactions</li></a>
+            <li class="nav-item" class=".trasnnva"><a href="./transaction.html"
+                    style="color: white;text-decoration: none;">Transactions</li></a>
             <li class="nav-item">Bills</li>
-            <li class="nav-item" class=".trasnnva" ><a  href="./profile.html" style="color: white;text-decoration: none;">Profile</li></a>
+            <li class="nav-item" class=".trasnnva"><a href="./profile.html"
+                    style="color: white;text-decoration: none;">Profile</li></a>
             <!-- <li class="nav-item">Goals</li>
             <li class="nav-item">Settings</li> -->
         </ul>
     </div>
+
+    <!-- main content -->
+    <div class="main-c">
+        <div class="card-1">
+            <div class="profile-img">
+                <img src="./assets/profile.jpg" alt="">
+            </div>
+            <div class="profile-content">
+                <h2>My Profile</h2>
+                <div class="name">Pulkit</div>
+                <div class="phone">+91 8427X-XXXXX</div>
+                <div class="email">pulkit@gmail.com</div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
