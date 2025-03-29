@@ -7,17 +7,41 @@
     <title>Profile</title>
     <link rel="stylesheet" href="./css/maininterfacecss.css">
     <style>
-        .card-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(200px, 1fr));
-  gap: 20px;
-}
-        .card-1{
-            grid-row-start: 1;
-            grid-row-end: 3;
+        .main-content {
+            background-color: white;
+            overflow-x: hidden;
         }
-        .profile-img img{
-            height: 250px;
+        .card-1 {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            width: 45vw;
+            height: 50vh;
+            margin-top: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            top: 6vh;
+            height: 265px;
+        }
+
+        .profile-img img {
+            position: relative;
+            top: -3vh;
+            height: 260px;
+        }
+
+        .profile-content {
+            position: relative;
+            left: 25vw;
+            bottom: 25vh;
+        }
+        .main-c {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         position:relative;
+         left: 35vw;
+         bottom: 15vh;
         }
     </style>
 </head>
@@ -39,21 +63,17 @@
     </div>
 
     <!-- main content -->
-    <div class="main-content">
-        <div class="card-grid">
-            <div class="card card-1">
-                <div class="profile-img">
-                    <img src="./assets/profile.jpg" alt="">
-                </div>
+    <div class="main-c">
+        <div class="card-1">
+            <div class="profile-img">
+                <img src="./assets/profile.jpg" alt="">
+            </div>
+            <div class="profile-content">
                 <h2>My Profile</h2>
-                <div class="profile-content">
-                    <div class="name">Pulkit</div>
-                    <div class="phone">+91 8427X-XXXXX</div>
-                </div>
+                <div class="name">Pulkit</div>
+                <div class="phone">+91 8427X-XXXXX</div>
                 <div class="email">pulkit@gmail.com</div>
             </div>
-            <div class="card card-2"></div>
-            <div class="card card-3"></div>
         </div>
     </div>
 </body>
