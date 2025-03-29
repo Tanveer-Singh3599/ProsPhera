@@ -304,7 +304,7 @@ flex-direction: row;
 .ai-recommendation h5 {
     color: var(--primary-color);
     margin-bottom: 10px;
-}6
+}
 
 .ai-loading, .ai-tip {
     color: var(--text-muted);
