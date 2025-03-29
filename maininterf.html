@@ -18,7 +18,7 @@
             <li class="nav-item">Goals</li>
             <li class="nav-item">Settings</li> -->
         </ul>
-    </div>
+    </div> 
 
     <!-- Main Content -->
     <div class="main-content">
@@ -55,7 +55,6 @@
                         <h3>Total Balance</h3>
                         <h1 class="text-primary" id="totalBalance">$240,399</h1>
                     </div>
-                    <span class="badge bg-primary">All Accounts</span>
                 </div>
             </div>
         </div>
@@ -108,18 +107,18 @@
             </div>
         </div>
     </div>
-    <!-- AI Recommendations Section -->
-<!-- <div class="ai-recommendations"> -->
-    <!-- <div class="card">
-        <div class="flex-between">
-            <h4>AI Financial Advisor</h4>
-            <button class="btn btn-primary" id="getRecommendations">Get Recommendations</button>
-        </div>
-        <div id="aiResponse" class="ai-response">
-            <p>Click the button to get personalized financial advice based on your spending patterns.</p>
+    <div class="ai-recommendations">
+        <div class="card">
+            <div class="flex-between">
+                <h4>AI Income Generator</h4>
+                <button class="btn btn-primary" id="incomeIdeasBtn">Suggest Income Ideas</button>
+            </div>
+            <div id="incomeResponse" class="ai-response">
+                <p>Click the button to explore new income opportunities based on your financial patterns.</p>
+            </div>
         </div>
     </div>
-</div> -->
+    
         <!-- Charts Grid -->
         <div class="charts-grid">
             <div class="chart-container">
@@ -204,6 +203,67 @@
                 }]
             }
         });
+
+        document.getElementById('incomeIdeasBtn').addEventListener('click', async () => {
+    const responseElement = document.getElementById('incomeResponse');
+    const button = document.getElementById('incomeIdeasBtn');
+    
+    // Show loading state
+    button.disabled = true;
+    button.textContent = 'Analyzing...';
+    responseElement.innerHTML = '<div class="ai-loading"><div class="spinner"></div> Generating income ideas...</div>';
+    
+    await new Promise(resolve => setTimeout(resolve, 1200 + Math.random() * 1000));
+
+    try {
+        const ideas = generateIncomeIdeas();
+        responseElement.innerHTML = `
+            <div class="ai-recommendation">
+                <h5>💡 New Income Opportunities</h5>
+                ${ideas.map(idea => `<p class="ai-tip">🔹 ${idea}</p>`).join('')}
+                <p class="ai-meta">Updated: ${new Date().toLocaleTimeString()}</p>
+            </div>
+        `;
+    } catch (error) {
+        responseElement.innerHTML = '<p class="ai-error">⚠️ Unable to generate ideas. Try again later.</p>';
+        console.error('Income ideas error:', error);
+    } finally {
+        button.disabled = false;
+        button.textContent = 'Suggest More Ideas';
+    }
+});
+
+// Generate AI-based Income Ideas
+function generateIncomeIdeas() {
+    const userBalance = totalBalance;
+    const highExpenseCategory = Object.entries(expenses).reduce((max, [cat, amt]) =>
+        amt > max.amt ? { cat, amt } : max, { cat: '', amt: 0 });
+
+    let ideas = [];
+
+    // Passive Income Suggestions
+    if (userBalance > 5000) {
+        ideas.push("Consider investing in high-yield savings, stocks, or real estate.");
+        ideas.push("Start an automated side hustle like drop shipping or print-on-demand.");
+    }
+
+    // Freelance & Side Hustles
+    ideas.push("Freelance your skills on platforms like Fiverr or Upwork.");
+    ideas.push("Create & sell digital products such as e-books or courses.");
+
+    // Expense-Based Suggestions
+    if (highExpenseCategory.amt > 300) {
+        ideas.push(`You spend a lot on ${highExpenseCategory.cat}. Consider offering related services for extra income.`);
+    }
+
+    // Safe fallback suggestion
+    if (ideas.length === 0) {
+        ideas.push("Explore part-time consulting or tutoring based on your expertise.");
+    }
+
+    return ideas;
+}
+
 
         // Event Listeners
         document.querySelector('.btn-income').addEventListener('click', () => {
