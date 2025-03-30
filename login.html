@@ -13,15 +13,15 @@
             <p style="color: white;">Welcome to <span style="font-weight: bolder; color: rgb(153, 213, 224);">Prosphera</span></p>
             <form id="loginForm">
                 <!-- <label for="text">Username</label> -->
-                <input type="text" id="user" placeholder="Username">
+                <input type="text" id="loginUser" placeholder="Username">
                 
                 <!-- <label for="password">Password</label> -->
-                <input type="password" id="password" placeholder="Password">
+                <input type="password" id="loginPass" placeholder="Password">
                 
                 <button onclick="login()">Login</button>
                 <p style="margin-top: 10px; color: white;">
                     Don't have a account?
-                    <button onclick="createfolderstructure()" style="width: 100px;">Sign up</button>
+                    <a href="signup.html">Sign up</a>
                 </p>
             </form>
         </div>
@@ -31,6 +31,7 @@
     </div>
     <!-- <script src="FolderStructure.js"></script> -->
     <script src="script.js"></script>
+    <script src="authentication.js"></script>
 </body>
 </html>
 
